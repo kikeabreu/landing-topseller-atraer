@@ -7,7 +7,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
 <style>
   :root {
-    --negro: #090909;
+    --negro: #050505;
     --blanco: #ffffff;
     --dorado: #f59e0b;
     --dorado-claro: #fbbf24;
@@ -37,9 +37,11 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 40px 24px 60px;
+    align-items: center;
+    padding: 60px 24px 60px;
     position: relative;
     overflow: hidden;
+    text-align: center;
   }
 
   .hero::before {
@@ -50,32 +52,31 @@
     pointer-events: none;
   }
 
-  .hero-tag {
-    display: inline-block;
-    background: rgba(44,95,138,0.15);
-    border: 1px solid rgba(74,144,196,0.3);
-    color: var(--azul-claro);
+  .pill-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(30, 11, 46, 0.5);
+    border: 1px solid rgba(196, 146, 251, 0.2);
+    color: var(--blanco);
     font-size: 11px;
     font-weight: 600;
     letter-spacing: 2px;
     text-transform: uppercase;
-    padding: 6px 14px;
-    border-radius: 2px;
+    padding: 8px 16px;
+    border-radius: 100px;
     margin-bottom: 32px;
     opacity: 0;
     animation: fadeUp 0.6s ease forwards 0.1s;
-    width: fit-content;
+    backdrop-filter: blur(10px);
   }
 
-  .hero-eyebrow {
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--dorado);
-    margin-bottom: 24px;
-    opacity: 0;
-    animation: fadeUp 0.6s ease forwards 0.2s;
+  .pill-badge .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--dorado);
+    box-shadow: 0 0 10px var(--dorado);
   }
 
   .hero h1 {
@@ -83,15 +84,15 @@
     font-size: clamp(42px, 11vw, 90px);
     font-weight: 900;
     line-height: 0.95;
-    letter-spacing: -1px;
+    letter-spacing: -2px;
     color: var(--blanco);
-    margin-bottom: 12px;
+    margin-bottom: 16px;
     opacity: 0;
     animation: fadeUp 0.7s ease forwards 0.3s;
   }
 
   .hero h1 .accent {
-    background: linear-gradient(90deg, #c492fb, #f78bb6, #fbc2a7, #f2b761);
+    background: linear-gradient(90deg, #b07cf0, #e66ea4, #f5a985, #e09f45);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     display: block;
@@ -100,12 +101,12 @@
   .hero-sub {
     font-size: clamp(16px, 4vw, 20px);
     font-weight: 300;
-    color: rgba(245,242,236,0.65);
-    max-width: 580px;
-    margin: 28px 0 48px;
+    color: rgba(255,255,255,0.7);
+    max-width: 600px;
+    margin: 0 auto 48px auto;
+    line-height: 1.6;
     opacity: 0;
     animation: fadeUp 0.7s ease forwards 0.5s;
-    line-height: 1.6;
   }
 
   .hero-sub strong { color: var(--blanco); font-weight: 600; }
@@ -646,23 +647,27 @@ src="https://www.facebook.com/tr?id=519208603900760&ev=PageView&noscript=1"
 <script src="https://groot.mailerlite.com/js/w/webforms.min.js?vb397d78ebaa8a0f631d35384c46d781b" type="text/javascript"></script>
 <style>
   .custom-ml-form {
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 16px;
     padding: 32px 24px;
-    margin-top: 24px;
     text-align: left;
     width: 100%;
     max-width: 500px;
+    margin-top: 24px;
     margin-left: auto;
     margin-right: auto;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    opacity: 0;
+    animation: fadeUp 0.7s ease forwards 0.7s;
   }
   .custom-ml-form .form-row { margin-bottom: 16px; }
   .custom-ml-form input, .custom-ml-form select, .custom-ml-form textarea {
     width: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 6px;
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
     color: var(--blanco);
     font-family: var(--fuente-cuerpo);
     font-size: 15px;
@@ -687,6 +692,11 @@ src="https://www.facebook.com/tr?id=519208603900760&ev=PageView&noscript=1"
   }
   .custom-ml-form .form-submit-btn {
     width: 100%; border: none; cursor: pointer; margin-top: 8px; justify-content: center;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+  }
+  .custom-ml-form .form-submit-btn:hover {
+    box-shadow: 0 0 20px rgba(245, 158, 11, 0.4);
   }
   .custom-ml-form .ml-error input, .custom-ml-form .ml-error select, .custom-ml-form .ml-error textarea {
     border-color: var(--rojo);
@@ -696,6 +706,7 @@ src="https://www.facebook.com/tr?id=519208603900760&ev=PageView&noscript=1"
 <body>
 
 <section class="hero">
+  <div class="pill-badge"><span class="dot"></span> Sistema Referente Inmobiliario™ · Mérida</div>
   <h1>
     Deja de depender.<br>
     <span class="accent">Domina tu demanda.</span>
