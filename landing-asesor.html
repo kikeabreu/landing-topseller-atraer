@@ -4,19 +4,19 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>El Asesor Invisible → Referente en 30 días | Top Seller Inmobiliario</title>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
 <style>
   :root {
-    --negro: #0a0a0a;
-    --blanco: #f5f2ec;
-    --dorado: #c9a84c;
-    --dorado-claro: #e8c97a;
-    --rojo: #c0392b;
-    --gris-oscuro: #1a1a1a;
-    --gris-medio: #2a2a2a;
-    --gris-texto: #888;
-    --fuente-titulo: 'Bebas Neue', sans-serif;
-    --fuente-cuerpo: 'DM Sans', sans-serif;
+    --negro: #090909;
+    --blanco: #ffffff;
+    --dorado: #f59e0b;
+    --dorado-claro: #fbbf24;
+    --rojo: #ef4444;
+    --gris-oscuro: #121212;
+    --gris-medio: #1f1f1f;
+    --gris-texto: #a1a1aa;
+    --fuente-titulo: 'Inter', sans-serif;
+    --fuente-cuerpo: 'Inter', sans-serif;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -38,7 +38,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 60px 24px 80px;
+    padding: 40px 24px 60px;
     position: relative;
     overflow: hidden;
   }
@@ -47,7 +47,7 @@
     content: '';
     position: absolute;
     inset: 0;
-    background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(201,168,76,0.12) 0%, transparent 70%);
+    background: radial-gradient(circle at 50% 0%, #1e0b2e 0%, transparent 60%);
     pointer-events: none;
   }
 
@@ -81,17 +81,20 @@
 
   .hero h1 {
     font-family: var(--fuente-titulo);
-    font-size: clamp(52px, 13vw, 100px);
-    line-height: 0.92;
-    letter-spacing: 1px;
+    font-size: clamp(42px, 11vw, 90px);
+    font-weight: 900;
+    line-height: 0.95;
+    letter-spacing: -1px;
     color: var(--blanco);
-    margin-bottom: 8px;
+    margin-bottom: 12px;
     opacity: 0;
     animation: fadeUp 0.7s ease forwards 0.3s;
   }
 
   .hero h1 .accent {
-    color: var(--dorado);
+    background: linear-gradient(90deg, #c492fb, #f78bb6, #fbc2a7, #f2b761);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
     display: block;
   }
 
@@ -919,8 +922,6 @@ src="https://www.facebook.com/tr?id=519208603900760&ev=PageView&noscript=1"
 
 <!-- ── HERO ── -->
 <section class="hero">
-  <div class="hero-tag">Para: El Asesor Invisible</div>
-  <p class="hero-eyebrow">Sistema Referente Inmobiliario™ · Mérida, Yucatán</p>
   <h1>
     Deja de ser<br>
     <span class="accent">invisible.</span>
@@ -1080,6 +1081,9 @@ src="https://www.facebook.com/tr?id=519208603900760&ev=PageView&noscript=1"
     <span class="label">Valor total del ecosistema</span>
     <span class="monto">$50,000 MXN</span>
   </div>
+  <p class="value-disclaimer reveal" style="text-align: center; color: var(--gris-texto); font-size: 14px; margin-top: 16px;">
+    Este es el valor real de los entregables. <strong style="color: var(--blanco);">NO es el precio que vas a pagar.</strong>
+  </p>
 </section>
 
 <!-- ── PRECIO ── -->
