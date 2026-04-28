@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Control total sobre tu demanda | Top Seller Inmobiliario</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --negro: #080810;
+    --blanco: #f5f2ec;
+    --dorado: #c9a84c;
+    --dorado-claro: #e8c97a;
+    --azul: #2c5f8a;
+    --azul-claro: #4a90c4;
+    --gris-oscuro: #13131e;
+    --gris-medio: #1e1e2e;
+    --gris-texto: #777;
+    --fuente-titulo: 'Bebas Neue', sans-serif;
+    --fuente-cuerpo: 'DM Sans', sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--negro);
+    color: var(--blanco);
+    font-family: var(--fuente-cuerpo);
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 60px 24px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 40% at 80% 20%, rgba(44,95,138,0.15) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 40% at 20% 80%, rgba(201,168,76,0.08) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .hero-tag {
+    display: inline-block;
+    background: rgba(44,95,138,0.15);
+    border: 1px solid rgba(74,144,196,0.3);
+    color: var(--azul-claro);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 2px;
+    margin-bottom: 32px;
+    opacity: 0;
+    animation: fadeUp 0.6s ease forwards 0.1s;
+    width: fit-content;
+  }
+
+  .hero-eyebrow {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--dorado);
+    margin-bottom: 24px;
+    opacity: 0;
+    animation: fadeUp 0.6s ease forwards 0.2s;
+  }
+
+  .hero h1 {
+    font-family: var(--fuente-titulo);
+    font-size: clamp(48px, 12vw, 96px);
+    line-height: 0.92;
+    color: var(--blanco);
+    margin-bottom: 8px;
+    opacity: 0;
+    animation: fadeUp 0.7s ease forwards 0.3s;
+  }
+
+  .hero h1 .accent { color: var(--dorado); display: block; }
+
+  .hero-sub {
+    font-size: clamp(16px, 4vw, 20px);
+    font-weight: 300;
+    color: rgba(245,242,236,0.65);
+    max-width: 580px;
+    margin: 28px 0 48px;
+    opacity: 0;
+    animation: fadeUp 0.7s ease forwards 0.5s;
+    line-height: 1.6;
+  }
+
+  .hero-sub strong { color: var(--blanco); font-weight: 600; }
+
+  .cta-principal {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--dorado);
+    color: var(--negro);
+    font-size: 15px;
+    font-weight: 700;
+    padding: 18px 32px;
+    border-radius: 3px;
+    text-decoration: none;
+    transition: all 0.25s ease;
+    opacity: 0;
+    animation: fadeUp 0.7s ease forwards 0.7s;
+    width: fit-content;
+  }
+
+  .cta-principal:hover {
+    background: var(--dorado-claro);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(201,168,76,0.25);
+  }
+
+  .cta-principal svg { width: 20px; height: 20px; }
+
+  .hero-nota {
+    font-size: 12px;
+    color: var(--gris-texto);
+    margin-top: 16px;
+    opacity: 0;
+    animation: fadeUp 0.6s ease forwards 0.9s;
+  }
+
+  .banda {
+    background: linear-gradient(135deg, var(--azul) 0%, #1a3a5c 100%);
+    padding: 20px 24px;
+    text-align: center;
+  }
+
+  .banda p {
+    font-family: var(--fuente-titulo);
+    font-size: clamp(18px, 4vw, 24px);
+    color: var(--blanco);
+    letter-spacing: 1px;
+  }
+
+  .seccion {
+    padding: 80px 24px;
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  .seccion-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--dorado);
+    margin-bottom: 20px;
+  }
+
+  .seccion h2 {
+    font-family: var(--fuente-titulo);
+    font-size: clamp(36px, 8vw, 60px);
+    line-height: 0.95;
+    margin-bottom: 32px;
+  }
+
+  .seccion h2 em { font-style: normal; color: var(--dorado); }
+
+  .seccion p {
+    font-size: 17px;
+    font-weight: 300;
+    color: rgba(245,242,236,0.75);
+    line-height: 1.7;
+    margin-bottom: 20px;
+  }
+
+  .seccion p strong { color: var(--blanco); font-weight: 600; }
+
+  .diagnostico-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3px;
+    margin: 40px 0;
+  }
+
+  .diagnostico-item {
+    background: var(--gris-oscuro);
+    padding: 28px 24px;
+    border-left: 3px solid rgba(44,95,138,0.6);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .diagnostico-item::after {
+    content: attr(data-num);
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: var(--fuente-titulo);
+    font-size: 80px;
+    color: rgba(255,255,255,0.02);
+    line-height: 1;
+  }
+
+  .diagnostico-item h4 {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--blanco);
+    margin-bottom: 8px;
+  }
+
+  .diagnostico-item p {
+    font-size: 14px;
+    color: rgba(245,242,236,0.55);
+    line-height: 1.5;
+    margin-bottom: 0;
+  }
+
+  .impacto {
+    font-size: 12px !important;
+    color: var(--azul-claro) !important;
+    font-weight: 600 !important;
+    margin-top: 10px !important;
+  }
+
+  .enemigo {
+    padding: 80px 24px;
+    background: var(--gris-oscuro);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .enemigo::before {
+    content: 'DEPENDENCIA';
+    position: absolute;
+    right: -20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: var(--fuente-titulo);
+    font-size: 100px;
+    color: rgba(255,255,255,0.015);
+    pointer-events: none;
+    white-space: nowrap;
+  }
+
+  .enemigo-inner { max-width: 680px; margin: 0 auto; }
+
+  .enemigo h2 {
+    font-family: var(--fuente-titulo);
+    font-size: clamp(36px, 8vw, 60px);
+    line-height: 0.95;
+    margin-bottom: 12px;
+  }
+
+  .enemigo-nombre {
+    font-family: var(--fuente-titulo);
+    font-size: clamp(38px, 9vw, 68px);
+    color: var(--azul-claro);
+    line-height: 0.9;
+    margin-bottom: 32px;
+    display: block;
+  }
+
+  .enemigo p {
+    font-size: 17px;
+    font-weight: 300;
+    color: rgba(245,242,236,0.75);
+    line-height: 1.7;
+    margin-bottom: 20px;
+  }
+
+  .enemigo p strong { color: var(--blanco); font-weight: 600; }
+
+  .control {
+    padding: 80px 24px;
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  .control h2 {
+    font-family: var(--fuente-titulo);
+    font-size: clamp(36px, 8vw, 60px);
+    line-height: 0.95;
+    margin-bottom: 40px;
+  }
+
+  .control h2 em { font-style: normal; color: var(--dorado); }
+
+  .antes-despues {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3px;
+    margin-bottom: 48px;
+  }
+
+  .antes, .despues { padding: 28px 24px; }
+
+  .antes {
+    background: rgba(44,95,138,0.08);
+    border-top: 3px solid var(--azul-claro);
+  }
+
+  .despues {
+    background: rgba(201,168,76,0.08);
+    border-top: 3px solid var(--dorado);
+  }
+
+  .antes h3, .despues h3 {
+    font-family: var(--fuente-titulo);
+    font-size: 20px;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+  }
+
+  .antes h3 { color: var(--azul-claro); }
+  .despues h3 { color: var(--dorado); }
+
+  .antes ul, .despues ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .antes ul li, .despues ul li {
+    font-size: 14px;
+    color: rgba(245,242,236,0.7);
+    line-height: 1.4;
+    padding-left: 16px;
+    position: relative;
+  }
+
+  .antes ul li::before { content: '—'; position: absolute; left: 0; color: var(--azul-claro); }
+  .despues ul li::before { content: '◆'; position: absolute; left: 0; color: var(--dorado); font-size: 8px; top: 4px; }
+
+  .sistema {
+    padding: 80px 24px;
+    background: var(--gris-oscuro);
+  }
+
+  .sistema-inner { max-width: 680px; margin: 0 auto; }
+
+  .sistema h2 {
+    font-family: var(--fuente-titulo);
+    font-size: clamp(36px, 8vw, 60px);
+    line-height: 0.95;
+    margin-bottom: 12px;
+  }
+
+  .sistema h2 em { font-style: normal; color: var(--dorado); }
+
+  .sistema-nombre {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: var(--dorado);
+    text-transform: uppercase;
+    margin-bottom: 32px;
+    display: block;
+  }
+
+  .sistema p {
+    font-size: 17px;
+    font-weight: 300;
+    color: rgba(245,242,236,0.75);
+    line-height: 1.7;
+    margin-bottom: 20px;
+  }
+
+  .sistema p strong { color: var(--blanco); font-weight: 600; }
+
+  .entregables { padding: 80px 24px; max-width: 680px; margin: 0 auto; }
+
+  .entregables h2 {
+    font-family: var(--fuente-titulo);
+    font-size: clamp(36px, 8vw, 60px);
+    line-height: 0.95;
+    margin-bottom: 8px;
+  }
+
+  .entregables h2 em { font-style: normal; color: var(--dorado); }
+  .entregables-nota { font-size: 14px; color: var(--gris-texto); margin-bottom: 40px; }
+
+  .lista-entregables {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin-bottom: 48px;
+  }
+
+  .lista-entregables li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    background: var(--gris-oscuro);
+    transition: background 0.2s;
+  }
+
+  .lista-entregables li:hover { background: var(--gris-medio); }
+  .lista-entregables li .nombre { font-size: 14px; font-weight: 500; color: var(--blanco); }
+  .lista-entregables li .valor { font-size: 13px; color: var(--dorado); font-weight: 600; white-space: nowrap; }
+
+  .valor-total {
+    border-top: 1px solid rgba(201,168,76,0.3);
+    padding-top: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .valor-total .label { font-size: 13px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--gris-texto); }
+  .valor-total .monto { font-family: var(--fuente-titulo); font-size: 48px; color: var(--dorado); line-height: 1; }
+
+  .precio-bloque { padding: 80px 24px; background: var(--gris-oscuro); }
+  .precio-inner { max-width: 680px; margin: 0 auto; }
+
+  .precio-inner h2 {
+    font-family: var(--fuente-titulo);
+    font-size: clamp(36px, 8vw, 56px);
+    line-height: 0.95;
+    margin-bottom: 40px;
+  }
+
+  .precio-inner h2 em { font-style: normal; color: var(--dorado); }
+
+  .precio-box {
+    background: var(--negro);
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 4px;
+    padding: 40px 32px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .precio-box::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--azul), var(--dorado));
+  }
+
+  .precio-badge {
+    display: inline-block;
+    background: rgba(44,95,138,0.15);
+    border: 1px solid rgba(74,144,196,0.4);
+    color: var(--azul-claro);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border-radius: 2px;
+    margin-bottom: 24px;
+  }
+
+  .precio-tachado { font-size: 18px; color: var(--gris-texto); text-decoration: line-through; margin-bottom: 8px; }
+
+  .precio-real {
+    font-family: var(--fuente-titulo);
+    font-size: clamp(64px, 16vw, 100px);
+    color: var(--blanco);
+    line-height: 0.9;
+    margin-bottom: 4px;
+  }
+
+  .precio-real span { font-size: 24px; color: var(--gris-texto); font-family: var(--fuente-cuerpo); font-weight: 300; }
+
+  .precio-nota {
+    font-size: 13px;
+    color: var(--gris-texto);
+    margin-bottom: 32px;
+    line-height: 1.5;
+  }
+
+  .precio-nota strong { color: var(--dorado); }
+
+  .roi-calculo {
+    background: rgba(201,168,76,0.06);
+    border: 1px solid rgba(201,168,76,0.15);
+    border-radius: 3px;
+    padding: 20px;
+    margin-bottom: 32px;
+  }
+
+  .roi-calculo p { font-size: 13px; color: rgba(245,242,236,0.6); margin-bottom: 4px; }
+  .roi-calculo .roi-numero { font-family: var(--fuente-titulo); font-size: 36px; color: var(--dorado); line-height: 1; }
+
+  .garantia { padding: 80px 24px; max-width: 680px; margin: 0 auto; }
+
+  .garantia h2 {
+    font-family: var(--fuente-titulo);
+    font-size: clamp(36px, 8vw, 56px);
+    line-height: 0.95;
+    margin-bottom: 32px;
+  }
+
+  .garantia-box {
+    background: var(--gris-oscuro);
+    border-left: 4px solid var(--dorado);
+    padding: 32px;
+    border-radius: 2px;
+    margin-bottom: 24px;
+  }
+
+  .garantia-box p { font-size: 16px; color: rgba(245,242,236,0.8); line-height: 1.7; margin-bottom: 16px; }
+  .garantia-box p:last-child { margin-bottom: 0; }
+  .garantia-box strong { color: var(--blanco); font-weight: 600; }
+
+  .exclusividad { padding: 60px 24px; background: var(--gris-oscuro); text-align: center; }
+
+  .exclusividad p {
+    font-family: var(--fuente-titulo);
+    font-size: clamp(24px, 6vw, 42px);
+    line-height: 1.1;
+    max-width: 600px;
+    margin: 0 auto 8px;
+    color: var(--blanco);
+  }
+
+  .exclusividad p em { font-style: normal; color: var(--dorado); }
+
+  .exclusividad-sub {
+    font-size: 14px !important;
+    font-family: var(--fuente-cuerpo) !important;
+    color: var(--gris-texto) !important;
+    font-weight: 300 !important;
+    margin-top: 8px !important;
+  }
+
+  .cta-final {
+    padding: 100px 24px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-final::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 40% at 50% 100%, rgba(201,168,76,0.08) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 30% at 80% 0%, rgba(44,95,138,0.1) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .cta-final h2 {
+    font-family: var(--fuente-titulo);
+    font-size: clamp(42px, 10vw, 80px);
+    line-height: 0.92;
+    margin-bottom: 24px;
+  }
+
+  .cta-final h2 em { font-style: normal; color: var(--dorado); }
+
+  .cta-final p {
+    font-size: 16px;
+    font-weight: 300;
+    color: rgba(245,242,236,0.6);
+    max-width: 440px;
+    margin: 0 auto 40px;
+    line-height: 1.6;
+  }
+
+  .cta-whatsapp {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    background: #25D366;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 700;
+    padding: 20px 36px;
+    border-radius: 3px;
+    text-decoration: none;
+    transition: all 0.25s ease;
+    margin-bottom: 16px;
+  }
+
+  .cta-whatsapp:hover {
+    background: #20ba58;
+    transform: translateY(-2px);
+    box-shadow: 0 16px 48px rgba(37,211,102,0.25);
+  }
+
+  .cta-whatsapp svg { width: 22px; height: 22px; }
+  .cta-sub { font-size: 12px; color: var(--gris-texto); display: block; }
+
+  footer { padding: 32px 24px; border-top: 1px solid rgba(255,255,255,0.06); text-align: center; }
+  footer p { font-size: 12px; color: rgba(255,255,255,0.2); }
+  footer strong { color: rgba(255,255,255,0.35); }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+
+  .reveal { opacity: 0; transform: translateY(32px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+
+  @media (max-width: 480px) {
+    .antes-despues { grid-template-columns: 1fr; }
+  }
+</style>
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '519208603900760');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=519208603900760&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+
+<!-- MailerLite Universal -->
+<script>
+    (function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[])
+    .push(arguments);},l=d.createElement(e),l.async=1,l.src=u,
+    n=d.getElementsByTagName(e)[0],n.parentNode.insertBefore(l,n);})
+    (window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');
+    ml('account', '564750');
+</script>
+<!-- End MailerLite Universal -->
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-tag">Para: El Director Sin Control de Demanda</div>
+  <p class="hero-eyebrow">Sistema Referente Inmobiliario™ · Mérida, Yucatán</p>
+  <h1>
+    Deja de depender.<br>
+    <span class="accent">Domina tu demanda.</span>
+  </h1>
+  <p class="hero-sub">
+    Tienes inventario, equipo y operación. Lo que aún no tienes es <strong>un sistema que genere demanda constante sin depender de portales, terceros ni suerte.</strong> Eso cambia en 30 días.
+  </p>
+  <div class="ml-embedded" data-form="VjTNj9"></div>
+  <p class="hero-nota">Diagnóstico gratuito · Sin presión · Solo 1 operación por zona</p>
+</section>
+
+<div class="banda">
+  <p>Tienes el producto. El mercado existe. Lo que falta es el sistema que los conecta.</p>
+</div>
+
+<section class="seccion">
+  <p class="seccion-label reveal">El diagnóstico real</p>
+  <h2 class="reveal reveal-delay-1">El problema no es<br>el <em>producto.</em></h2>
+  <p class="reveal reveal-delay-2">Tienes inventario. Tienes equipo. Tienes proyectos con potencial real. Pero si hoy te pregunto con exactitud de dónde vendrán tus próximos 10 clientes… la respuesta no es tan clara como debería ser.</p>
+  <p class="reveal reveal-delay-3">Eso no es un problema de producto. Es un problema de sistema de generación de demanda.</p>
+
+  <div class="diagnostico-grid">
+    <div class="diagnostico-item reveal" data-num="01">
+      <h4>Dependencia de portales</h4>
+      <p>Inmuebles24, Lamudi, Vivanuncios. Plataformas que no controlas, que suben de precio y que ponen a tu inventario junto a tu competencia directa.</p>
+      <p class="impacto">Impacto: sin diferenciación, compites por precio</p>
+    </div>
+    <div class="diagnostico-item reveal reveal-delay-1" data-num="02">
+      <h4>Marketing desalineado con el negocio</h4>
+      <p>Agencias que hacen contenido "bonito" pero no entienden tu ciclo de ventas, tus proyectos ni tu cliente ideal.</p>
+      <p class="impacto">Impacto: inversión sin retorno medible</p>
+    </div>
+    <div class="diagnostico-item reveal reveal-delay-2" data-num="03">
+      <h4>Sin sistema replicable por proyecto</h4>
+      <p>Cada lanzamiento empieza de cero. Sin sistema documentado que funcione independientemente del equipo que lo ejecute.</p>
+      <p class="impacto">Impacto: velocidad de venta impredecible</p>
+    </div>
+    <div class="diagnostico-item reveal reveal-delay-3" data-num="04">
+      <h4>Equipo sin infraestructura de captación</h4>
+      <p>Asesores que dependen de referidos y esfuerzo individual. Sin sistema centralizado que genere demanda para toda la operación.</p>
+      <p class="impacto">Impacto: resultados variables mes a mes</p>
+    </div>
+  </div>
+
+  <p class="reveal"><strong>El Modelo Invisible™ no solo afecta a asesores individuales. Afecta a toda operación que no tiene sistema propio de generación de demanda.</strong></p>
+</section>
+
+<section class="enemigo">
+  <div class="enemigo-inner">
+    <p class="seccion-label reveal">La raíz del problema</p>
+    <h2 class="reveal reveal-delay-1">El sistema que te mantiene sin control se llama:</h2>
+    <span class="enemigo-nombre reveal reveal-delay-2">Dependencia estructural.</span>
+    <p class="reveal reveal-delay-3">Dependencia de portales. Dependencia de agencias que no entienden el negocio. Dependencia de asesores estrella. Dependencia de referidos. Dependencia de la suerte del mercado.</p>
+    <p class="reveal">Cuando dependes de terceros para generar demanda, <strong>cedes el control de lo más importante: el flujo de clientes de tu operación.</strong></p>
+    <p class="reveal reveal-delay-1">Y sin control de demanda, no puedes predecir ventas. No puedes escalar con certeza. No puedes dominar tu mercado.</p>
+  </div>
+</section>
+
+<section class="control">
+  <p class="seccion-label reveal">Lo que cambia</p>
+  <h2 class="reveal reveal-delay-1">De depender<br>a <em>dominar.</em></h2>
+
+  <div class="antes-despues reveal reveal-delay-2">
+    <div class="antes">
+      <h3>HOY</h3>
+      <ul>
+        <li>Dependes de portales</li>
+        <li>Marketing desconectado</li>
+        <li>Sin sistema replicable</li>
+        <li>Demanda impredecible</li>
+        <li>Equipo sin captación propia</li>
+        <li>Cada proyecto desde cero</li>
+      </ul>
+    </div>
+    <div class="despues">
+      <h3>EN 30 DÍAS</h3>
+      <ul>
+        <li>Canal propio de demanda</li>
+        <li>Sistema integrado al negocio</li>
+        <li>Metodología replicable</li>
+        <li>Flujo constante y predecible</li>
+        <li>Infraestructura de captación activa</li>
+        <li>Sistema que escala con cada proyecto</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="sistema">
+  <div class="sistema-inner">
+    <p class="seccion-label reveal">La solución</p>
+    <h2 class="reveal reveal-delay-1">Infraestructura de<br><em>demanda propia.</em></h2>
+    <span class="sistema-nombre reveal reveal-delay-2">Sistema Referente Inmobiliario™ · Método Embudo Invertido™</span>
+    <p class="reveal reveal-delay-3">No es marketing genérico. Es un ecosistema completo de atracción, conversación y seguimiento — diseñado para generar demanda constante desde redes sociales, sin depender de portales ni de terceros.</p>
+    <p class="reveal">El <strong>Método Embudo Invertido™</strong> construye autoridad de marca, atrae prospectos calificados y los organiza en un CRM con seguimiento estructurado. El resultado es un sistema que trabaja para tu operación todos los días — no solo cuando publicas una propiedad nueva.</p>
+    <p class="reveal reveal-delay-1">Es infraestructura de ventas. No un servicio mensual de contenido.</p>
+  </div>
+</section>
+
+<section class="entregables">
+  <p class="seccion-label reveal">Lo que recibes</p>
+  <h2 class="reveal reveal-delay-1">Un ecosistema<br><em>completo.</em></h2>
+  <p class="entregables-nota reveal reveal-delay-2">No servicios sueltos. Todo integrado bajo el Método Embudo Invertido™.</p>
+
+  <ul class="lista-entregables">
+    <li class="reveal"><span class="nombre">Diagnóstico estratégico inicial</span><span class="valor">$2,000</span></li>
+    <li class="reveal reveal-delay-1"><span class="nombre">Método Embudo Invertido™ personalizado</span><span class="valor">$5,000</span></li>
+    <li class="reveal reveal-delay-2"><span class="nombre">Estrategia de posicionamiento + calendario</span><span class="valor">$5,000</span></li>
+    <li class="reveal reveal-delay-3"><span class="nombre">Copywriting estratégico</span><span class="valor">$4,000</span></li>
+    <li class="reveal"><span class="nombre">Grabación de contenido con el cliente</span><span class="valor">$4,000</span></li>
+    <li class="reveal reveal-delay-1"><span class="nombre">Edición profesional de videos</span><span class="valor">$8,000</span></li>
+    <li class="reveal reveal-delay-2"><span class="nombre">Diseño gráfico de carruseles</span><span class="valor">$3,000</span></li>
+    <li class="reveal reveal-delay-3"><span class="nombre">Publicación y programación de contenido</span><span class="valor">$5,000</span></li>
+    <li class="reveal"><span class="nombre">Gestión y optimización de pauta</span><span class="valor">$5,000</span></li>
+    <li class="reveal reveal-delay-1"><span class="nombre">CRM sin límite de usuarios ni prospectos</span><span class="valor">$3,000</span></li>
+    <li class="reveal reveal-delay-2"><span class="nombre">Automatizaciones en Instagram</span><span class="valor">$4,000</span></li>
+    <li class="reveal reveal-delay-3"><span class="nombre">Reporte y análisis de resultados</span><span class="valor">$2,000</span></li>
+  </ul>
+
+  <div class="valor-total reveal">
+    <span class="label">Valor total del ecosistema</span>
+    <span class="monto">$50,000 MXN</span>
+  </div>
+</section>
+
+<section class="precio-bloque">
+  <div class="precio-inner">
+    <p class="seccion-label reveal">Tu inversión</p>
+    <h2 class="reveal reveal-delay-1">Una sola operación<br>lo <em>paga todo.</em></h2>
+
+    <div class="precio-box reveal reveal-delay-2">
+      <div class="precio-badge">Precio de lanzamiento</div>
+      <p class="precio-tachado">$15,000 – $20,000 MXN / mes</p>
+      <div class="precio-real">$10,000 <span>MXN / mes</span></div>
+      <p class="precio-nota">Precio de lanzamiento. Los clientes que entren ahora mantienen este precio mientras permanezcan activos. <strong>Una vez que se cierren las plazas, el precio sube sin excepciones.</strong></p>
+
+      <div class="roi-calculo">
+        <p>Una sola operación cerrada en Mérida</p>
+        <div class="roi-numero">$120K – $150K MXN</div>
+        <p style="margin-top:12px;">El sistema no es un gasto. Es la infraestructura que hace que <strong style="color:var(--blanco)">tu inventario tenga demanda constante en lugar de esperar que alguien lo encuentre en un portal.</strong></p>
+      </div>
+
+      <div class="ml-embedded" data-form="VjTNj9"></div>
+    </div>
+  </div>
+</section>
+
+<section class="garantia">
+  <p class="seccion-label reveal">Sin riesgo</p>
+  <h2 class="reveal reveal-delay-1">Garantía de Activación del Sistema</h2>
+
+  <div class="garantia-box reveal reveal-delay-2">
+    <p>No estás pagando por "intentos". Estás pagando por un sistema que se implementa, se ejecuta y queda funcionando en tu operación.</p>
+    <p>Si en los primeros 30 días no tienes <strong>contenido publicado de forma consistente, automatizaciones activas, CRM configurado y un flujo real de conversaciones con prospectos iniciado</strong> — trabajamos contigo sin costo adicional hasta que el sistema esté completamente activo.</p>
+    <p>Nuestro compromiso es que tengas infraestructura de demanda funcionando — no promesas vacías.</p>
+  </div>
+</section>
+
+<section class="exclusividad">
+  <p class="reveal">"Si trabajamos contigo en tu zona,<br>no trabajamos con <em>nadie más.</em>"</p>
+  <p class="exclusividad-sub reveal reveal-delay-1">Solo 1 operación por zona · Capacidad limitada · Proceso de selección</p>
+</section>
+
+<section class="cta-final">
+  <h2 class="reveal">¿Listo para dejar<br>de depender y <em>dominar?</em></h2>
+  <p class="reveal reveal-delay-1">Agendemos una llamada de diagnóstico gratuita para analizar tu operación actual, identificar dónde está la oportunidad y ver si el Sistema Referente Inmobiliario™ es el fit correcto para tu negocio.</p>
+  <div class="ml-embedded reveal reveal-delay-2" data-form="VjTNj9"></div>
+  <span class="cta-sub reveal reveal-delay-3">Llamada gratuita · Sin presión · Diagnóstico estratégico</span>
+</section>
+
+<footer>
+  <p>© 2026 <strong>Top Seller Inmobiliario</strong> · Sistema Referente Inmobiliario™ · Mérida, Yucatán</p>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
