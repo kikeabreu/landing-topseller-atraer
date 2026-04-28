@@ -9,8 +9,11 @@
   :root {
     --negro: #050505;
     --blanco: #ffffff;
+    --morado: #b07cf0;
+    --morado-claro: #c492fb;
+    --morado-oscuro: #7e22ce;
+    --naranja: #f59e0b;
     --dorado: #f59e0b;
-    --dorado-claro: #fbbf24;
     --rojo: #ef4444;
     --gris-oscuro: #121212;
     --gris-medio: #1f1f1f;
@@ -35,14 +38,53 @@
   /* ── HERO ── */
   .hero {
     min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 60px 24px 60px;
+    padding: 60px 24px;
     position: relative;
     overflow: hidden;
+  }
+
+  .hero-content-wrapper {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 32px;
+  }
+
+  .hero-text-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  @media (min-width: 992px) {
+    .hero {
+      display: flex;
+      align-items: center;
+    }
+    .hero-content-wrapper {
+      flex-direction: row;
+      justify-content: space-between;
+      text-align: left;
+      align-items: center;
+    }
+    .hero-text-block {
+      align-items: flex-start;
+      flex: 1;
+      padding-right: 40px;
+    }
+    .hero-sub {
+      margin: 0 0 48px 0;
+    }
+    .custom-ml-form {
+      margin-top: 0;
+      flex: 0 0 450px;
+    }
   }
 
   .hero::before {
@@ -120,8 +162,8 @@
     display: inline-flex;
     align-items: center;
     gap: 12px;
-    background: var(--dorado);
-    color: var(--negro);
+    background: var(--morado);
+    color: var(--blanco);
     font-family: var(--fuente-cuerpo);
     font-size: 15px;
     font-weight: 700;
@@ -136,9 +178,10 @@
   }
 
   .cta-principal:hover {
-    background: var(--dorado-claro);
+    background: var(--morado-claro);
+    color: var(--negro);
     transform: translateY(-2px);
-    box-shadow: 0 12px 40px rgba(201,168,76,0.3);
+    box-shadow: 0 12px 40px rgba(176,124,240,0.4);
   }
 
   .cta-principal svg {
@@ -915,15 +958,20 @@ src="https://www.facebook.com/tr?id=519208603900760&ev=PageView&noscript=1"
     background-size: 1em;
   }
   .custom-ml-form input:focus, .custom-ml-form select:focus, .custom-ml-form textarea:focus {
-    border-color: var(--dorado);
+    border-color: var(--morado);
   }
   .custom-ml-form .form-submit-btn {
     width: 100%; border: none; cursor: pointer; margin-top: 8px; justify-content: center;
     border-radius: 8px;
     transition: all 0.3s ease;
+    background: var(--morado);
+    color: var(--blanco);
+    font-weight: 700;
   }
   .custom-ml-form .form-submit-btn:hover {
-    box-shadow: 0 0 20px rgba(245, 158, 11, 0.4);
+    box-shadow: 0 0 20px rgba(176, 124, 240, 0.4);
+    background: var(--morado-claro);
+    color: var(--negro);
   }
   .custom-ml-form .ml-error input, .custom-ml-form .ml-error select, .custom-ml-form .ml-error textarea {
     border-color: var(--rojo);
@@ -934,15 +982,19 @@ src="https://www.facebook.com/tr?id=519208603900760&ev=PageView&noscript=1"
 
 <!-- ── HERO ── -->
 <section class="hero">
-  <div class="pill-badge"><span class="dot"></span> Sistema Referente Inmobiliario™ · Mérida</div>
-  <h1>
-    Deja de ser<br>
-    <span class="accent">invisible.</span>
-  </h1>
-  <p class="hero-sub">
-    Conviértete en el referente de tu zona en <strong>30 días</strong> — con un sistema que genera prospectos constantes y te da control real sobre tus ventas.
-  </p>
-  <div id="mlb2-40496824" class="ml-form-embedContainer ml-subscribe-form ml-subscribe-form-40496824 custom-ml-form">
+  <div class="hero-content-wrapper">
+    <div class="hero-text-block">
+      <div class="pill-badge"><span class="dot"></span> Sistema Referente Inmobiliario™ · Mérida</div>
+      <h1>
+        Deja de ser<br>
+        <span class="accent">invisible.</span>
+      </h1>
+      <p class="hero-sub">
+        Conviértete en el referente de tu zona en <strong>30 días</strong> — con un sistema que genera prospectos constantes y te da control real sobre tus ventas.
+      </p>
+    </div>
+    
+    <div id="mlb2-40496824" class="ml-form-embedContainer ml-subscribe-form ml-subscribe-form-40496824 custom-ml-form">
     <form class="ml-block-form" action="https://assets.mailerlite.com/jsonp/564750/forms/185933585964861371/subscribe" data-code="" method="post" target="_blank">
       <div class="form-row"><input type="text" class="form-control" name="fields[name]" placeholder="Nombre completo" required></div>
       <div class="form-row"><input type="email" class="form-control" name="fields[email]" placeholder="Correo electrónico" required></div>
@@ -1107,9 +1159,13 @@ src="https://www.facebook.com/tr?id=519208603900760&ev=PageView&noscript=1"
 
     <div class="precio-box reveal reveal-delay-2">
       <div class="precio-badge">Precio de lanzamiento</div>
-      <p class="precio-tachado">$15,000 – $20,000 MXN / mes</p>
+      <p class="precio-tachado">$20,000 MXN / mes</p>
       <div class="precio-real">$10,000 <span>MXN / mes</span></div>
-      <p class="precio-nota">Precio de lanzamiento. Los clientes que entren ahora mantienen este precio mientras permanezcan activos. <strong>Una vez que se cierren las plazas, el precio sube sin excepciones.</strong></p>
+      <p class="precio-nota">
+        Precio de lanzamiento.<br><br>
+        Los clientes que entren ahora mantienen este precio mientras permanezcan activos.<br><br>
+        <strong>Una vez que se cierren las plazas, el precio sube sin excepciones.</strong>
+      </p>
 
       <div class="roi-calculo">
         <p>Comisión promedio en Mérida</p>
@@ -1155,8 +1211,8 @@ src="https://www.facebook.com/tr?id=519208603900760&ev=PageView&noscript=1"
 
   <div class="garantia-box reveal reveal-delay-2">
     <p>No estás pagando por "intentos". Estás pagando por un sistema que se implementa, se ejecuta y queda funcionando en tu negocio.</p>
-    <p>Si en los primeros 30 días no tienes <strong>contenido publicado de forma consistente, automatizaciones activas en Instagram, CRM configurado y un flujo real de conversaciones con prospectos iniciado</strong> — trabajamos contigo sin costo adicional hasta que el sistema esté completamente activo.</p>
-    <p>No prometemos ventas específicas porque dependen de variables fuera de nuestro control. Pero sí te garantizamos que el sistema opera.</p>
+    <p><br>Si en los primeros 30 días no tienes <strong>contenido publicado de forma consistente, automatizaciones activas en Instagram, CRM configurado y un flujo real de conversaciones con prospectos iniciado</strong> — trabajamos contigo sin costo adicional hasta que el sistema esté completamente activo.</p>
+    <p><br>No prometemos ventas específicas porque dependen de variables fuera de nuestro control. Pero sí te garantizamos que el sistema opera.</p>
   </div>
 </section>
 
