@@ -642,6 +642,27 @@
     .antes-despues { grid-template-columns: 1fr; }
   }
 
+  
+  /* ── HERO FORM BOX ── */
+  .hero-form-box {
+    background: rgba(30, 11, 46, 0.6);
+    border: 1px solid rgba(176, 124, 240, 0.3);
+    padding: 32px 24px;
+    border-radius: 16px;
+    width: 100%;
+    max-width: 450px;
+    margin: 32px auto 0;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+    opacity: 0;
+    animation: fadeUp 0.7s ease forwards 0.7s;
+  }
+  .hero-form-box .custom-ml-form {
+    margin-top: 0;
+    animation: none;
+    opacity: 1;
+  }
+
   /* ── MODAL ── */
   .modal-overlay {
     position: fixed;
@@ -837,7 +858,21 @@ src="https://www.facebook.com/tr?id=519208603900760&ev=PageView&noscript=1"
       </p>
     </div>
     
-    <button class="cta-principal trigger-modal" onclick="openModal()">Postularme al Sistema</button>
+    <div class="hero-form-box">
+      <div id="mlb2-40496824" class="ml-form-embedContainer ml-subscribe-form ml-subscribe-form-40496824 custom-ml-form">
+    <form class="ml-block-form" onsubmit="if(typeof fbq !== 'undefined') fbq('track', 'CompleteRegistration');" action="https://assets.mailerlite.com/jsonp/564750/forms/185933585964861371/subscribe" data-code="" method="post" target="_blank">
+      <div class="form-row"><input type="text" class="form-control" name="fields[name]" placeholder="Nombre completo" required></div>
+      <div class="form-row"><input type="email" class="form-control" name="fields[email]" placeholder="Correo electrónico" required></div>
+      <div class="form-row"><input type="tel" class="form-control" name="fields[phone]" placeholder="Teléfono" required></div>
+      <input type="hidden" name="ml-submit" value="1">
+      <input type="hidden" name="anticsrf" value="true">
+          <div class="ml-form-embedSubmit">
+            <button type="submit" class="cta-principal form-submit-btn">Postularme al Sistema</button>
+            <button disabled="disabled" style="display: none;" type="button" class="loading cta-principal form-submit-btn" style="opacity: 0.7;">Enviando...</button>
+          </div>
+        </form>
+      </div>
+    </div>
   </div>
 </section>
 
