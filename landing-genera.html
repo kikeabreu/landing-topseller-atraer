@@ -842,6 +842,50 @@ src="https://www.facebook.com/tr?id=519208603900760&ev=PageView&noscript=1"
     border-color: var(--rojo);
   }
 </style>
+
+<style>
+  /* ── MOBILE HERO OPTIMIZATIONS ── */
+  @media (max-width: 768px) {
+    .hero {
+      padding: 24px 16px 40px;
+      min-height: auto;
+    }
+    .hero-content-wrapper {
+      gap: 16px;
+    }
+    .pill-badge {
+      margin-bottom: 16px;
+      padding: 6px 12px;
+      font-size: 10px;
+    }
+    .hero h1 {
+      font-size: clamp(34px, 10vw, 42px);
+      margin-bottom: 8px;
+    }
+    .hero-sub {
+      font-size: 15px;
+      margin-bottom: 0;
+    }
+    .hero-form-box {
+      margin-top: 16px;
+      padding: 20px 16px;
+    }
+    .custom-ml-form .form-row {
+      margin-bottom: 10px;
+    }
+    .custom-ml-form input, .custom-ml-form select {
+      padding: 12px 14px;
+      font-size: 14px;
+    }
+    .custom-ml-form .form-submit-btn {
+      padding: 14px 16px;
+      font-size: 15px;
+    }
+    .hero-scroll {
+      display: none;
+    }
+  }
+</style>
 </head>
 <body>
 
